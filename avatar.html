@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ready Player Me Avatar</title>
+    <style>
+        body { margin: 0; background-color: #202020; overflow: hidden; }
+        #container { width: 100vw; height: 100vh; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: sans-serif;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Left click to rotate | Right click to pan | Scroll to zoom</div>
+    <div id="container"></div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // 1. Setup Scene, Camera, and Renderer
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x202020); // Dark grey background
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 1.5, 3); // Position camera at eye level
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true; // Enable shadows for realism
+        document.getElementById('container').appendChild(renderer.domElement);
+
+        // 2. Add Lighting (Crucial for 3D models)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Soft white light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(2, 2, 2);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+
+        // 3. Load Your Character
+        const loader = new GLTFLoader();
+        const avatarUrl = 'https://models.readyplayer.me/69402e52b6235d0cd1aa9ed4.glb';
+
+        loader.load(
+            avatarUrl,
+            (gltf) => {
+                const model = gltf.scene;
+                
+                // Center the model
+                model.position.set(0, -1, 0); 
+                
+                // Enable shadows on the model mesh
+                model.traverse((node) => {
+                    if (node.isMesh) {
+                        node.castShadow = true;
+                        node.receiveShadow = true;
+                    }
+                });
+
+                scene.add(model);
+                console.log('Avatar loaded successfully!');
+            },
+            undefined, // Progress callback
+            (error) => {
+                console.error('An error happened loading the avatar:', error);
+            }
+        );
+
+        // 4. Add Controls (Rotate/Zoom)
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0, 0); // Look at the center
+        controls.enableDamping = true; // Smooth motion
+
+        // 5. Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
