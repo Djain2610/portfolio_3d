@@ -214,10 +214,10 @@ function EntryOverlay({ onEnter }) {
       />
 
       {/* Window */}
-      <div className="relative z-10 w-[420px] rounded-xl bg-[#f5f4f2] shadow-2xl border border-black/10">
+      <div className="relative z-10 w-[420px] rounded-xl bg-[#0f0f0f] shadow-2xl border border-white/10">
         {/* Title bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-black/10">
-          <span className="text-sm font-medium text-black/70">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <span className="text-sm font-medium text-white/70">
             Welcome
           </span>
           <div className="flex gap-2">
@@ -229,15 +229,15 @@ function EntryOverlay({ onEnter }) {
 
         {/* Content */}
         <div className="px-6 py-8 text-center">
-          <h1 className="text-3xl font-semibold text-black">
+          <h1 className="text-3xl font-semibold text-white">
             Daksh Jain
           </h1>
 
-          <p className="mt-2 text-sm text-black/60">
+          <p className="mt-2 text-sm text-white/60">
             Designer × Developer
           </p>
 
-          <p className="mt-4 text-sm leading-relaxed text-black/70">
+          <p className="mt-4 text-sm leading-relaxed text-white/70">
             I build thoughtful digital experiences
             where design, code, and systems meet.
           </p>
@@ -249,7 +249,7 @@ function EntryOverlay({ onEnter }) {
             Step into my workspace
           </button>
 
-          <p className="mt-4 text-xs text-black/40">
+          <p className="mt-4 text-xs text-white/40">
             Use WASD to move · Press E to interact
           </p>
         </div>
@@ -270,6 +270,7 @@ export default function Home() {
 const [isSitting, setIsSitting] = useState(false);
 const [sitTarget, setSitTarget] = useState(null);
 const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
+const [loading3D, setLoading3D] = useState(false);
 
 // 🔥 Player Reference (needed for sitting)
 const playerRef = useRef(null);
@@ -356,21 +357,34 @@ useEffect(() => {
   useEffect(() => {
   if (!entered) return;
 
-  setDialogueStep(1); // first bubble
-
+  const t0 = setTimeout(() => setDialogueStep(1), 1000); // delay start
   const t1 = setTimeout(() => {
     setDialogueStep(2); // second bubble
-  }, 3500);
+  }, 4500);
 
   const t2 = setTimeout(() => {
     setDialogueStep(0); // hide all
-  }, 7500);
+  }, 8500);
 
   return () => {
+    clearTimeout(t0);
     clearTimeout(t1);
     clearTimeout(t2);
   };
 }, [entered]);
+
+useEffect(() => {
+  if (loading3D) {
+    const t = setTimeout(() => setLoading3D(false), 4000);
+    return () => clearTimeout(t);
+  }
+}, [loading3D]);
+
+useEffect(() => {
+  if (scene === "inside") {
+    setLoading3D(true);
+  }
+}, [scene]);
 
 const handlePlayerPosition = ({ position }) => {
   // Reset every frame
@@ -438,7 +452,24 @@ const handlePlayerPosition = ({ position }) => {
 
   return (
     <div className="h-screen w-full bg-[#87CEEB]">
-      {!entered && <EntryOverlay onEnter={() => setEntered(true)} /> }
+      {!entered && <EntryOverlay onEnter={() => { setEntered(true); setLoading3D(true); }} /> }
+{entered && loading3D && (
+  <div className="absolute inset-0 z-50">
+    <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
+    <div
+      className="absolute inset-0 opacity-[0.04]"
+      style={{
+        backgroundImage:
+          "url('https://grainy-gradients.vercel.app/noise.svg')",
+      }}
+    />
+    <div className="absolute inset-0 flex items-center justify-center">
+      <h1 className="text-white text-2xl font-light tracking-wide animate-pulse">
+        Entering workspace
+      </h1>
+    </div>
+  </div>
+)}
 <div className="absolute bottom-4 right-4 z-50 bg-black/70 text-white px-4 py-2 rounded">
   Scene: {scene}
 </div>
@@ -447,8 +478,13 @@ const handlePlayerPosition = ({ position }) => {
   onClose={() => setIsPortfolioOpen(false)}
 />
 
-
+{loading3D && (
+  <div className="absolute inset-0 z-40 flex items-center justify-center">
+    <p className="bg-white/90 px-4 py-2 rounded-lg text-black/70 text-sm shadow-lg">Initializing workspace...</p>
+  </div>
+)}
         
+{entered && !loading3D && (
       <Canvas shadows dpr={[1, 2]} >
   {/* Background (restore blue sky) */}
   <color attach="background" args={["#55cedb"]} />
@@ -642,11 +678,12 @@ const handlePlayerPosition = ({ position }) => {
   <ContactShadows blur={2} opacity={0.6} />
 
 </Canvas>
+)}
 
 
 
 
-      
-    </div>
+
+          </div>
   );
 }
