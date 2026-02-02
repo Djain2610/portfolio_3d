@@ -2,7 +2,7 @@
 
 import { useFrame } from "@react-three/fiber";
 import { useAnimations, Html } from "@react-three/drei";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 import {
   forwardRef,
   useRef,
@@ -35,8 +35,8 @@ export const Player = forwardRef(function Player(
   /* =========================
      LOAD MODELS + ANIMATIONS
   ========================== */
-  const avatar = useSafeGLTF("/models/anim_avatar.glb");
-  const idle = useSafeGLTF("/models/idle.glb");
+  const avatar = useGLTF("/models/anim_avatar.glb");
+  const idle = useGLTF("/models/idle.glb");
 
   // Name animations safely
   if (avatar.animations?.length) {

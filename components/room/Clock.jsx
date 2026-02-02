@@ -1,9 +1,9 @@
 "use client";
 import { Center } from "@react-three/drei";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 
 export default function Clock(props) {
-  const { scene } = useSafeGLTF("/models/clock.glb");
+  const { scene } = useGLTF("/models/clock.glb");
   return (
     <group {...props} scale={3}>
       <Center>
@@ -12,3 +12,4 @@ export default function Clock(props) {
     </group>
   );
 }
+

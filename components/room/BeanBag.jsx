@@ -1,9 +1,9 @@
 "use client";
 import { Center } from "@react-three/drei";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 
 export default function BeanBag(props) {
-  const { scene } = useSafeGLTF("/models/bean_bag.glb");
+  const { scene } = useGLTF("/models/bean_bag.glb");
   return (
     <group {...props} scale={1.2}>
       <Center>
@@ -12,3 +12,4 @@ export default function BeanBag(props) {
     </group>
   );
 }
+

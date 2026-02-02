@@ -1,9 +1,9 @@
 "use client";
 import { Center } from "@react-three/drei";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 
 export default function Poster(props) {
-  const { scene } = useSafeGLTF("/models/poster.glb");
+  const { scene } = useGLTF("/models/poster.glb");
   return (
     <group {...props} scale={0.2}>
       <Center>
@@ -12,3 +12,4 @@ export default function Poster(props) {
     </group>
   );
 }
+

@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import * as THREE from "three";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 
 export default function Interior() {
-  const gltf = useSafeGLTF("/models/house_interior3.glb");
+  const gltf = useGLTF("/models/house_interior3.glb");
 
   useEffect(() => {
     const scene = gltf.scene;
@@ -27,3 +27,4 @@ export default function Interior() {
 );
 
 }
+

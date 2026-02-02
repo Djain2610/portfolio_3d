@@ -9,8 +9,8 @@ import {
   Center,
   Float,
 } from "@react-three/drei";
-import { useRef, useMemo, useState, useEffect } from "react";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useRef, useMemo, useState, useEffect, Suspense } from "react";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import Interior from "@/components/Interior";
 import Desk from "@/components/Desk";
@@ -57,7 +57,7 @@ function Asset({
   swaySpeed = 1,
   userData = {},
 }) {
-  const { scene } = useSafeGLTF(url);
+  const { scene } = useGLTF(url);
   const ref = useRef();
 
   useFrame((state) => {
@@ -482,7 +482,8 @@ const handlePlayerPosition = ({ position }) => {
 )}
         
 {entered && !loading3D && (
-      <Canvas shadows dpr={[1, 2]} >
+  <Suspense fallback={null}>
+    <Canvas shadows dpr={[1, 2]} >
   {/* Background (restore blue sky) */}
   <color attach="background" args={["#55cedb"]} />
 
@@ -673,6 +674,7 @@ const handlePlayerPosition = ({ position }) => {
   <ContactShadows blur={2} opacity={0.6} />
 
 </Canvas>
+  </Suspense>
 )}
 
 

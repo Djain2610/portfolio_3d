@@ -1,9 +1,9 @@
 "use client";
 import { Center } from "@react-three/drei";
-import { useSafeGLTF } from "@/lib/safeGltf";
+import { useGLTF } from "@react-three/drei";
 
 export default function Chair(props) {
-  const { scene } = useSafeGLTF("/models/low_poly_computer_chair.glb");
+  const { scene } = useGLTF("/models/low_poly_computer_chair.glb");
   return (
     <group {...props} scale={0.6}>
       <Center>
@@ -12,3 +12,4 @@ export default function Chair(props) {
     </group>
   );
 }
+
