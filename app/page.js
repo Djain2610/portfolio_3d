@@ -659,7 +659,6 @@ const handlePlayerPosition = ({ position }) => {
 
 
 
-  </>
   </Suspense>
 )}
 
