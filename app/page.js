@@ -10,7 +10,7 @@ import {
   Center,
   Float,
 } from "@react-three/drei";
-import { Suspense, lazy } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import Interior from "@/components/Interior";
 import Desk from "@/components/Desk";
@@ -27,11 +27,8 @@ import Poster from "@/components/room/Poster";
 import PortfolioOverlay from "@/components/PortfolioOverlay";
 
 
-const Player = lazy(() =>
-  import("@/components/Player").then((m) => ({ default: m.Player }))
-);
+import { Player } from "@/components/Player";
 
-import { useRef, useMemo, useState, useEffect } from "react";
 const INTERACTION_ZONES = [
   {
     id: "house",
@@ -664,14 +661,12 @@ const handlePlayerPosition = ({ position }) => {
 )}
 
   <group position={[0, 0.1, 7]}>
-    <Suspense fallback={null}>
-      <Player
-        ref={playerRef}
-        dialogueStep={dialogueStep}
-        interactionPrompt={interactionPrompt}
-        onPositionChange={handlePlayerPosition}
-      />
-    </Suspense>
+    <Player
+      ref={playerRef}
+      dialogueStep={dialogueStep}
+      interactionPrompt={interactionPrompt}
+      onPositionChange={handlePlayerPosition}
+    />
   </group>
 
   {/* Shadows */}
