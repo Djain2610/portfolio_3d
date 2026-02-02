@@ -294,6 +294,12 @@ useEffect(() => {
   const handleKeyDown = (e) => {
     const key = e.key.toLowerCase();
 
+    // 🚫 Close Portfolio (Escape)
+    if (key === "escape" && isPortfolioOpen) {
+      setIsPortfolioOpen(false);
+      return;
+    }
+
     // 🌍 Enter House
     if (key === "e" && interactionPrompt === "Press E to enter") {
       setScene("inside");
@@ -310,14 +316,11 @@ useEffect(() => {
       return;
     }
 
-    if (interactionPrompt === "Press E to view portfolio") {
-  setIsPortfolioOpen(true);
-
-  setTimeout(() => {
-    setIsPortfolioOpen(false);
-  }, 2500);
-}
-
+    // 📱 View Portfolio
+    if (key === "e" && interactionPrompt === "Press E to view portfolio") {
+      setIsPortfolioOpen(true);
+      return;
+    }
 
     // 🎯 Sit Down
     if (key === "e" && interactionPrompt === "Press E to sit" && sitTarget && !isSitting) {
@@ -346,7 +349,7 @@ useEffect(() => {
 
   window.addEventListener("keydown", handleKeyDown);
   return () => window.removeEventListener("keydown", handleKeyDown);
-}, [interactionPrompt, sitTarget, isSitting, scene]);
+}, [interactionPrompt, sitTarget, isSitting, scene, isPortfolioOpen]);
 
 
 
@@ -374,9 +377,12 @@ const handlePlayerPosition = ({ position }) => {
   setInteractionPrompt(null);
   setSitTarget(null);
 
+  // Don't show prompts when portfolio is open
+  if (isPortfolioOpen) return;
+
   if (scene === "outside") {
     // House entry
-    if (position.z > -9.2 && position.z < -8.8) {
+    if (position.z > -12 && position.z < -10) {
       setInteractionPrompt("Press E to enter");
       return;
     }
@@ -411,8 +417,8 @@ const handlePlayerPosition = ({ position }) => {
     if (
       position.x > -0.3 &&
       position.x < 0.3 &&
-      position.z > -10.8 &&
-      position.z < -10.2
+      position.z > -12 &&
+      position.z < -10
     ) {
       setInteractionPrompt("Press E to view portfolio");
       return;
@@ -640,9 +646,7 @@ const handlePlayerPosition = ({ position }) => {
 
 
 
-      <div className="absolute top-8 left-8 text-white font-bold text-4xl">
-        DAKSH'S PORTFOLIO
-      </div>
+      
     </div>
   );
 }
