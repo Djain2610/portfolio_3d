@@ -202,13 +202,13 @@ function EntryOverlay({ onEnter }) {
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
       {/* Subtle grain */}
-      <div
+      {/* <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
             "url('https://grainy-gradients.vercel.app/noise.svg')",
         }}
-      />
+      /> */}
 
       {/* Window */}
       <div className="relative z-10 w-[420px] rounded-xl bg-[#0f0f0f] shadow-2xl border border-white/10">
@@ -453,13 +453,13 @@ const handlePlayerPosition = ({ position }) => {
 {entered && loading3D && (
   <div className="absolute inset-0 z-50">
     <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
-    <div
+    {/* <div
       className="absolute inset-0 opacity-[0.04]"
       style={{
         backgroundImage:
           "url('https://grainy-gradients.vercel.app/noise.svg')",
       }}
-    />
+    /> */}
     <div className="absolute inset-0 flex items-center justify-center">
       <h1 className="text-white text-2xl font-light tracking-wide animate-pulse">
         Entering workspace
