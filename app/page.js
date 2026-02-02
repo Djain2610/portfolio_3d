@@ -1,8 +1,7 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import {
-  useGLTF,
   Environment,
   ContactShadows,
   OrthographicCamera,
@@ -10,6 +9,7 @@ import {
   Center,
   Float,
 } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import Interior from "@/components/Interior";
@@ -57,7 +57,8 @@ function Asset({
   swaySpeed = 1,
   userData = {},
 }) {
-  const { scene } = useGLTF(url);
+  const gltf = useLoader(GLTFLoader, url);
+  const scene = gltf.scene;
   const ref = useRef();
 
   useFrame((state) => {
@@ -77,7 +78,7 @@ function Asset({
       }
     });
     return c;
-  }, [scene]);
+  }, [gltf]);
 
   return (
     <group ref={ref} position={position} rotation={rotation}  userData={userData}>
