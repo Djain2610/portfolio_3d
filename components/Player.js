@@ -35,8 +35,8 @@ export const Player = forwardRef(function Player(
   /* =========================
      LOAD MODELS + ANIMATIONS
   ========================== */
-  const avatar = useSafeGLTF("/anim_avatar.glb");
-  const idle = useSafeGLTF("/idle.glb");
+  const avatar = useSafeGLTF("/models/anim_avatar.glb");
+  const idle = useSafeGLTF("/models/idle.glb");
 
   // Name animations safely
   if (avatar.animations?.length) {

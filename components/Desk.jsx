@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Desk(props) {
-  const { scene } = useSafeGLTF("/desk_lowpoly.glb");
+  const { scene } = useSafeGLTF("/models/desk_lowpoly.glb");
 
   const cloned = useMemo(() => {
     const c = scene.clone();

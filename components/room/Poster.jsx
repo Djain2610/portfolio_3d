@@ -3,7 +3,7 @@ import { Center } from "@react-three/drei";
 import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Poster(props) {
-  const { scene } = useSafeGLTF("/poster.glb");
+  const { scene } = useSafeGLTF("/models/poster.glb");
   return (
     <group {...props} scale={0.2}>
       <Center>

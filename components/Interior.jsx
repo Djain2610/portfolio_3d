@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Interior() {
-  const gltf = useSafeGLTF("/house_interior3.glb");
+  const gltf = useSafeGLTF("/models/house_interior3.glb");
 
   useEffect(() => {
     const scene = gltf.scene;

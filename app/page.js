@@ -124,71 +124,71 @@ function Level() {
   return (
     <group>
       {/* ===== HOUSE ===== */}
-      <Asset url="/house.glb" size={9} position={[0, 0, -9]} rotation={[0, Math.PI, 0]} userData={{block: true}} />
+      <Asset url="/models/house.glb" size={9} position={[0, 0, -9]} rotation={[0, Math.PI, 0]} userData={{block: true}} />
 
       {/* ===== PATH ===== */}
       {pathZ.map((z, i) => (
-        <Asset key={i} url="/paving_stone.glb" size={1} position={[0, 0.02, z]} />
+        <Asset key={i} url="/models/paving_stone.glb" size={1} position={[0, 0.02, z]} />
       ))}
 
       {/* ===== PATH FENCES ===== */}
       {pathZ.map((z, i) => (
         <group key={`fence-${i}`}>
-          <Asset url="/fence.glb" size={1.5} position={[-2, 0, z]} userData={{ block: true }} />
-          <Asset url="/fence.glb" size={1.5} position={[4, 0, z]} userData={{ block: true }} />
+          <Asset url="/models/fence.glb" size={1.5} position={[-2, 0, z]} userData={{ block: true }} />
+          <Asset url="/models/fence.glb" size={1.5} position={[4, 0, z]} userData={{ block: true }} />
         </group>
       ))}
 
       {/* ===== LAMPS ===== */}
       <group position={[-1.3, 0, 6.4]}>
-        <Asset url="/street_lamps.glb" size={3} sway userData={{ block: true }}/>
+        <Asset url="/models/street_lamps.glb" size={3} sway userData={{ block: true }}/>
         <pointLight intensity={2} distance={6} color="#ffb703" position={[0, 2.5, 0]} />
       </group>
 
       <group position={[3, 0, 6.4]}>
-        <Asset url="/street_lamps.glb" size={3} sway userData={{ block: true }} />
+        <Asset url="/models/street_lamps.glb" size={3} sway userData={{ block: true }} />
         <pointLight intensity={2} distance={6} color="#ffb703" position={[0, 2.5, 0]} />
       </group>
 
       {/* ===== HOUSE PROPS ===== */}
-      <Asset url="/pot.glb" size={0.7} position={[-0.8, 0, -7.4]} />
-      <Asset url="/pot.glb" size={0.7} position={[0.8, 0, -7.4]} />
+      <Asset url="/models/pot.glb" size={0.7} position={[-0.8, 0, -7.4]} />
+      <Asset url="/models/pot.glb" size={0.7} position={[0.8, 0, -7.4]} />
 
-      <Asset url="/bench.glb" size={3} position={[2.5, 0, 0.5]} rotation={[0, -1.5, 0]} userData={{ block: true }}/>
-      <Asset url="/mailbox.glb" size={2} position={[2, 0, 7.5]} rotation={[0, 0.35, 0]} userData={{ block: true }}/>
+      <Asset url="/models/bench.glb" size={3} position={[2.5, 0, 0.5]} rotation={[0, -1.5, 0]} userData={{ block: true }}/>
+      <Asset url="/models/mailbox.glb" size={2} position={[2, 0, 7.5]} rotation={[0, 0.35, 0]} userData={{ block: true }}/>
 
       {/* ===== ORIGINAL VEGETATION ===== */}
-      <Asset url="/bush.glb" size={1} position={[-3, 0, 4]} />
-      <Asset url="/bush2.glb" size={1} position={[3, 0, 3.6]} />
-      <Asset url="/bush.glb" size={1} position={[-2.8, 0, -5.6]} />
-      <Asset url="/bush2.glb" size={1} position={[3, 0, -6]} />
+      <Asset url="/models/bush.glb" size={1} position={[-3, 0, 4]} />
+      <Asset url="/models/bush2.glb" size={1} position={[3, 0, 3.6]} />
+      <Asset url="/models/bush.glb" size={1} position={[-2.8, 0, -5.6]} />
+      <Asset url="/models/bush2.glb" size={1} position={[3, 0, -6]} />
 
       {/* ===== EXTRA BUSHES (NEW – SAFE FILL) ===== */}
-      <Asset url="/bush.glb" size={1.5} position={[-9, 0, 3]} />
-      <Asset url="/bush3.glb" size={1.5} position={[-7.2, 0, 1.5]} />
+      <Asset url="/models/bush.glb" size={1.5} position={[-9, 0, 3]} />
+      <Asset url="/models/bush3.glb" size={1.5} position={[-7.2, 0, 1.5]} />
 
-      <Asset url="/bush.glb" size={0.8} position={[6.8, 0, 2.2]} />
-      <Asset url="/bush2.glb" size={0.9} position={[7.4, 0, 0.8]} />
+      <Asset url="/models/bush.glb" size={0.8} position={[6.8, 0, 2.2]} />
+      <Asset url="/models/bush2.glb" size={0.9} position={[7.4, 0, 0.8]} />
 
-      <Asset url="/bush.glb" size={0.8} position={[-6, 0, -4]} />
-      <Asset url="/bush2.glb" size={0.9} position={[-7.2, 0, -5.2]} />
+      <Asset url="/models/bush.glb" size={0.8} position={[-6, 0, -4]} />
+      <Asset url="/models/bush2.glb" size={0.9} position={[-7.2, 0, -5.2]} />
 
-      <Asset url="/bush.glb" size={0.8} position={[6.4, 0, -5]} />
-      <Asset url="/bush2.glb" size={0.9} position={[7.2, 0, -6.2]} />
+      <Asset url="/models/bush.glb" size={0.8} position={[6.4, 0, -5]} />
+      <Asset url="/models/bush2.glb" size={0.9} position={[7.2, 0, -6.2]} />
 
       {/* ===== ROCKS & STUMPS ===== */}
-      <Asset url="/rock.glb" size={1} position={[-4.4, 0, 1.6]} userData={{ block: true }}/>
-      <Asset url="/rock.glb" size={0.8} position={[4.6, 0, -1.8]} userData={{ block: true }}/>
-      <Asset url="/stump.glb" size={2} position={[-5.2, 0, -2.2]} userData={{ block: true }}/>
-      <Asset url="/stump.glb" size={3} position={[5.2, 0, 7]} userData={{ block: true }}/>
+      <Asset url="/models/rock.glb" size={1} position={[-4.4, 0, 1.6]} userData={{ block: true }}/>
+      <Asset url="/models/rock.glb" size={0.8} position={[4.6, 0, -1.8]} userData={{ block: true }}/>
+      <Asset url="/models/stump.glb" size={2} position={[-5.2, 0, -2.2]} userData={{ block: true }}/>
+      <Asset url="/models/stump.glb" size={3} position={[5.2, 0, 7]} userData={{ block: true }}/>
 
       {/* ===== TREES ===== */}
-      <Asset url="/low_poly_tree1.glb" size={6} position={[-10, 0, 6]} sway userData={{ block: true }}/>
-      <Asset url="/low_poly_tree1.glb" size={7} position={[10, 0, 5]} sway userData={{ block: true }}/>
-      <Asset url="/low_poly_tree1.glb" size={6} position={[-9, 0, -6]} sway userData={{ block: true }}/>
-      <Asset url="/low_poly_tree3.glb" size={6} position={[9, 0, -6]} sway userData={{ block: true }}/>
-      <Asset url="/low_poly_tree3.glb" size={7} position={[-9, 0, 0]} sway userData={{ block: true }}/>
-      <Asset url="/low_poly_tree1.glb" size={6} position={[0, 0, -12]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree1.glb" size={6} position={[-10, 0, 6]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree1.glb" size={7} position={[10, 0, 5]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree1.glb" size={6} position={[-9, 0, -6]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree3.glb" size={6} position={[9, 0, -6]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree3.glb" size={7} position={[-9, 0, 0]} sway userData={{ block: true }}/>
+      <Asset url="/models/low_poly_tree1.glb" size={6} position={[0, 0, -12]} sway userData={{ block: true }}/>
 
       <Fireflies />
     </group>
