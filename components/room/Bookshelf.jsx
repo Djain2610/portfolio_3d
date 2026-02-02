@@ -1,8 +1,9 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Bookshelf(props) {
-  const { scene } = useGLTF("/book_shelf_low_poly.glb");
+  const { scene } = useSafeGLTF("/book_shelf_low_poly.glb");
   return (
     <group {...props} scale={2.5}>
       <Center>

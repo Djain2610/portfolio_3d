@@ -2,7 +2,6 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  useGLTF,
   Environment,
   ContactShadows,
   OrthographicCamera,
@@ -11,6 +10,7 @@ import {
   Float,
 } from "@react-three/drei";
 import { useRef, useMemo, useState, useEffect } from "react";
+import { useSafeGLTF } from "@/lib/safeGltf";
 import * as THREE from "three";
 import Interior from "@/components/Interior";
 import Desk from "@/components/Desk";
@@ -57,7 +57,7 @@ function Asset({
   swaySpeed = 1,
   userData = {},
 }) {
-  const { scene } = useGLTF(url);
+  const { scene } = useSafeGLTF(url);
   const ref = useRef();
 
   useFrame((state) => {

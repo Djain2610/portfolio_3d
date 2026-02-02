@@ -1,8 +1,9 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Lamp(props) {
-  const { scene } = useGLTF("/floor_lamp.glb");
+  const { scene } = useSafeGLTF("/floor_lamp.glb");
   return (
     <group {...props} scale={0.5}>
       <Center>

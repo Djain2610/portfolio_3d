@@ -1,8 +1,9 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Plant(props) {
-  const { scene } = useGLTF("/potted_plant_low_poly.glb");
+  const { scene } = useSafeGLTF("/potted_plant_low_poly.glb");
   return (
     <group {...props} scale={2}>
       <Center>

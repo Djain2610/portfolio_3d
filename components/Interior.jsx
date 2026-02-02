@@ -1,11 +1,11 @@
 "use client";
 
-import { useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
 import * as THREE from "three";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Interior() {
-  const gltf = useGLTF("/house_interior3.glb");
+  const gltf = useSafeGLTF("/house_interior3.glb");
 
   useEffect(() => {
     const scene = gltf.scene;

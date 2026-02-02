@@ -1,8 +1,9 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Poster(props) {
-  const { scene } = useGLTF("/poster.glb");
+  const { scene } = useSafeGLTF("/poster.glb");
   return (
     <group {...props} scale={0.2}>
       <Center>

@@ -1,8 +1,9 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Door(props) {
-  const { scene } = useGLTF("/low_poly_door.glb");
+  const { scene } = useSafeGLTF("/low_poly_door.glb");
   return (
     <group {...props} scale={2}>
       <Center>

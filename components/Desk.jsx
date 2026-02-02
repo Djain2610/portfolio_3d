@@ -1,9 +1,10 @@
 "use client";
-import { useGLTF, Center } from "@react-three/drei";
+import { Center } from "@react-three/drei";
 import { useMemo } from "react";
+import { useSafeGLTF } from "@/lib/safeGltf";
 
 export default function Desk(props) {
-  const { scene } = useGLTF("/desk_lowpoly.glb");
+  const { scene } = useSafeGLTF("/desk_lowpoly.glb");
 
   const cloned = useMemo(() => {
     const c = scene.clone();
