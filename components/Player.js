@@ -9,6 +9,7 @@ import {
   useState,
   useEffect,
   useImperativeHandle,
+  useMemo,
 } from "react";
 import * as THREE from "three";
 import Bubble from "@/components/SpeechBubble";
@@ -38,16 +39,26 @@ export const Player = forwardRef(function Player(
   const avatar = useGLTF("/models/anim_avatar.glb");
   const idle = useGLTF("/models/idle.glb");
 
-  // Name animations safely
-  if (avatar.animations?.length) {
-    avatar.animations[0].name = "Walk";
-  }
-  if (idle.animations?.length) {
-    idle.animations[0].name = "Idle";
-    avatar.animations.push(idle.animations[0]);
-  }
+  // Combine animations from both GLTF files
+  const allAnimations = useMemo(() => {
+    const anims = [];
+    
+    if (avatar.animations?.length > 0) {
+      const walkAnim = avatar.animations[0].clone();
+      walkAnim.name = "Walk";
+      anims.push(walkAnim);
+    }
+    
+    if (idle.animations?.length > 0) {
+      const idleAnim = idle.animations[0].clone();
+      idleAnim.name = "Idle";
+      anims.push(idleAnim);
+    }
+    
+    return anims;
+  }, [avatar.animations, idle.animations]);
 
-  const { actions } = useAnimations(avatar.animations, groupRef);
+  const { actions } = useAnimations(allAnimations, groupRef);
 
   /* =========================
      INPUT STATE

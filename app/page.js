@@ -482,8 +482,7 @@ const handlePlayerPosition = ({ position }) => {
 )}
         
 {entered && !loading3D && (
-  <Suspense fallback={null}>
-    <Canvas shadows dpr={[1, 2]} >
+  <Canvas shadows dpr={[1, 2]} >
   {/* Background (restore blue sky) */}
   <color attach="background" args={["#55cedb"]} />
 
@@ -505,7 +504,9 @@ const handlePlayerPosition = ({ position }) => {
       <Environment preset="city" />
 
       {/* Level */}
-      <Level />
+      <Suspense fallback={null}>
+        <Level />
+      </Suspense>
 
       <group position={[0, 0, 0]}>
         <mesh
@@ -532,7 +533,7 @@ const handlePlayerPosition = ({ position }) => {
 
   {/* ================= INSIDE SCENE ================= */}
 {scene === "inside" && (
-  <>
+  <Suspense fallback={null}>
     <color attach="background" args={["#E8E6E1"]} />
 
     <OrthographicCamera makeDefault position={[14, 14, 14]} zoom={70} />
@@ -659,25 +660,25 @@ const handlePlayerPosition = ({ position }) => {
 
 
   </>
+  </Suspense>
 )}
 
-  <group position={[0, 0.1, 7]}>
-    <Player
-      ref={playerRef}
-      dialogueStep={dialogueStep}
-      interactionPrompt={interactionPrompt}
-      onPositionChange={handlePlayerPosition}
-    />
-  </group>
+  <Suspense fallback={null}>
+    <group position={[0, 0.1, 7]}>
+      <Player
+        ref={playerRef}
+        dialogueStep={dialogueStep}
+        interactionPrompt={interactionPrompt}
+        onPositionChange={handlePlayerPosition}
+      />
+    </group>
+  </Suspense>
 
   {/* Shadows */}
   <ContactShadows blur={2} opacity={0.6} />
 
 </Canvas>
-  </Suspense>
 )}
-
-
 
 
 
