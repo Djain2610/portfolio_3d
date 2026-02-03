@@ -240,7 +240,7 @@ function EntryOverlay({ onEnter }) {
           </p>
 
            <p className="mt-4 text-sm leading-relaxed text-white/70">
-           Experimental. In progress. Minor issues possible.
+           An experimental portfolio exploring new interactions — occasional bugs are part of the process.
           </p>
 
           <button
