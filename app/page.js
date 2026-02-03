@@ -239,6 +239,10 @@ function EntryOverlay({ onEnter }) {
             where design, code, and systems meet.
           </p>
 
+           <p className="mt-4 text-sm leading-relaxed text-white/70">
+           Experimental. In progress. Minor issues possible.
+          </p>
+
           <button
             onClick={onEnter}
             className="mt-6 w-full rounded-lg bg-black text-white py-3 text-sm font-medium hover:bg-black/90 transition"
