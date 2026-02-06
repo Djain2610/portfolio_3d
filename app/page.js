@@ -250,7 +250,7 @@ function EntryOverlay({ onEnter }) {
             Step into my workspace
           </button>
 
-          <p className="mt-4 text-xs text-white/40">
+          <p className="mt-4 text-sm leading-relaxed text-white/70">
             Use WASD to move · Press E to interact
           </p>
         </div>
