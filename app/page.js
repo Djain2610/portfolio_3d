@@ -250,9 +250,16 @@ function EntryOverlay({ onEnter }) {
             Step into my workspace
           </button>
 
-          <p className="mt-4 text-sm leading-relaxed text-white/70">
-            Use WASD to move · Press E to interact
-          </p>
+          <p className="mt-4 text-sm text-white/60">
+  Interactive 3D portfolio — built from scratch using Next.js + React Three Fiber.·{" "}
+  <a
+    href="https://github.com/Djain2610/portfolio_3d"
+    target="_blank"
+    className="text-white/70 underline hover:text-white transition"
+  >
+    View Code ↗
+  </a>
+</p>
         </div>
       </div>
     </div>
@@ -682,6 +689,20 @@ const handlePlayerPosition = ({ position }) => {
 
 </Canvas>
 )}
+
+  <div className="absolute top-8 left-8 flex items-center gap-2 text-black/80 text-m font-large tracking-wide z-50">
+  <span className="px-2 py-1 bg-white/100 rounded-md border border-white/100">
+    WASD
+  </span>
+  <span>Move</span>
+
+  <span className="opacity-40">·</span>
+
+  <span className="px-2 py-1 bg-white/100 rounded-md border border-white/100">
+    E
+  </span>
+  <span>Interact</span>
+</div>
 
 
 
